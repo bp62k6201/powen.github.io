@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>VolleyBall</title>
+<link rel="icon" href="ball.ico" type="image/x-icon">
+<script type="text/javascript"></script>  
+<style type= "text/css">
+body   {color: red;text-align:center; font-size:56pt; font-family:tahoma;}
+</style>
+  <script>
+  
+		var upDown = false;
+		
+		var intervalId;
+		var vx = -3, vy = -3;
+		var pv= 10;
+		var dpv = 2;
+		var jpv = 20;
+		var p1_x;
+		var p1_y;
+		var p2_x;
+		var p2_y;
+		
+		
+		function init() {
+		 WIDTH = 800;
+		 HEIGHT = 600;
+		 intervalId= setInterval(run, 10);
+		}
+		
+		function run(){
+			var x=parseInt(document.getElementById("ball").style.left);
+			var y=parseInt(document.getElementById("ball").style.top);
+			var p1_x = parseInt(document.getElementById("player1").style.left); // player1??
+			var p1_y = parseInt(document.getElementById("player1").style.top);
+			var p2_x = parseInt(document.getElementById("player2").style.left); // player2??
+			var p2_y = parseInt(document.getElementById("player2").style.top);
+			
+			x += vx;
+			y += vy;
+			
+			if( upDown==false && (parseInt(document.getElementById("player1").style.top)+100)<600 ) {
+				p1_y += dpv;
+				document.getElementById("player1").style.top = p1_y+"px";
+			}
+			
+			
+			if( upDown==false && (parseInt(document.getElementById("player2").style.top)+100)<600 ) {
+				p2_y += dpv;
+				document.getElementById("player2").style.top = p2_y+"px";
+			}
+			
+			
+			
+			document.getElementById("ball").style.left = x+"px";
+			document.getElementById("ball").style.top = y+"px"; 
+			
+			if(parseInt(document.getElementById("ball").style.left) < 0 ) { vx = -vx;} //??
+			if(parseInt(document.getElementById("ball").style.left) + parseInt(document.getElementById("ball").style.width) > parseInt(document.getElementById("ground").style.width)){ vx = -vx;} 
+			if(parseInt(document.getElementById("ball").style.top) < 0) { vy=-vy;} //??
+			if(parseInt(document.getElementById("ball").style.top) + parseInt(document.getElementById("ball").style.height) > parseInt(document.getElementById("ground").style.height)) { clearInterval( intervalId); document.getElementById("ground").innerHTML='Press F5 </br>to play again';} 
+			
+			if((parseInt( document.getElementById("ball").style.top) >= ((parseInt(document.getElementById("player1").style.top))-65)) || (parseInt( document.getElementById("ball").style.top) >= (parseInt(document.getElementById("player2").style.top)-65))){
+				if(((parseInt( document.getElementById("ball").style.left)+32) >  (parseInt( document.getElementById("player1").style.left))) && ((parseInt(document.getElementById("ball").style.left)+32) <  (parseInt( document.getElementById("player1").style.left) + 100)) 
+				   || ((parseInt(document.getElementById("ball").style.left)+32) >  (parseInt( document.getElementById("player2").style.left))) && ((parseInt(document.getElementById("ball").style.left)+32) <  (parseInt( document.getElementById("player2").style.left) + 100)))
+					{vy= -vy;}
+			} // player???
+			
+			if(parseInt( document.getElementById("ball").style.top) > 300){
+				if(parseInt( document.getElementById("ball").style.left)+65 >= parseInt(document.getElementById("net").style.left) && parseInt( document.getElementById("ball").style.left) <= parseInt(document.getElementById("net").style.left)+20){
+					vx=-vx;} // ??????
+					
+			}
+		}
+		
+			
+		
+		    function move(){
+				
+			var upDown = false;
+			
+			var p1_x = parseInt(document.getElementById("player1").style.left);
+			var p1_y = parseInt(document.getElementById("player1").style.top);
+			var p2_x = parseInt(document.getElementById("player2").style.left);
+			var p2_y = parseInt(document.getElementById("player2").style.top);
+			
+			
+			switch(event.keyCode){
+				case 37:	//?????
+					p1_x -= pv;
+					document.getElementById("player1").style.left= p1_x +"px";
+					break;
+				case 39:	//?????
+					p1_x += pv;
+					document.getElementById("player1").style.left= p1_x +"px";
+					break;
+				case 38:	//??up?
+					if( parseInt(document.getElementById("player1").style.top) > 250){
+						upDown = true;
+						p1_y -= jpv;
+						document.getElementById("player1").style.top = p1_y+"px";
+						upDown = false;
+						
+						}
+					break;
+					
+				case 65:	//?????
+					p2_x -= pv;
+					document.getElementById("player2").style.left= p2_x +"px";
+					break;
+				case 68:	//?????
+					p2_x += pv;
+					document.getElementById("player2").style.left= p2_x +"px";
+					break;
+				case 87:	//??up?
+					if( parseInt(document.getElementById("player2").style.top) > 250){
+						upDown = true;
+						p2_y -= jpv;
+						document.getElementById("player2").style.top = p2_y+"px";
+						upDown = false;
+						
+						}
+					break;
+				
+				
+				
+				
+			}
+			
+		
+		}
+		
+
+		function start(){};
+				
+				addEventListener("load",start,false);
+				
+		init();
+		
+  </script>  
+  
+</head>  
+
+<body onkeydown="move()">  
+	<div id="ground" style=" position: absolute; background-image: url('beach.jpg'); background-repeat: no-repeat; top:0px; left:0px;
+				 background-size: 120% ; width: 800px; height: 600px; border: 1px solid green; ">
+									
+		<div id="ball" style=" position: absolute; width: 65px; height: 65px; top:50px; left:325px; background-size: 100%;
+			background-image: url('ball.png'); background-repeat: no-repeat;"></div>
+	
+		<div id="player1" style=" position: absolute; width: 100px; height: 100px; top: 500px; left: 550px;
+			background-image: url('player1.png'); background-repeat: no-repeat; background-size: 100%"></div>	
+	
+		<div id="player2" style=" position: absolute; width: 100px; height: 100px; top: 500px; left: 150px;
+			background-image: url('player2.png'); background-repeat: no-repeat; background-size: 100%"></div>
+				 
+		<div id="net" style="position: absolute; background-image: url('net.png');top: 320px; left: 380px; width:20px; height:280px; 
+								background-size:10%;"></div>		 
+				 
+	
+	</div>
+
+</body>  
+</html>

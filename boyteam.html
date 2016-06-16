@@ -1,0 +1,153 @@
+<html>
+<head>
+<meta charset="UTF-8">
+ <title>main</title>
+   <style type = "text/css">
+		 body			  {  background-color:rgba(28,28,28,1);
+							margin:0px;}
+         body header nav              { font-weight: bold;
+                             text-decoration: none;
+                             text-align: center;
+                             width: 20em;  	
+							 
+		 				   }
+		body header nav ul li	     	{	float:left;
+							    width:calc(100%/3);
+								margin-top:30px;
+								}	
+		body header nav ul   { list-style:none; text-align: center; margin:0; padding:0;}
+		
+		
+		.headerShift    {position:relative;
+                        top:32px;
+						left:50px;
+						z-index:2;}
+        body header				{width:100%; 
+							height:90px; 
+							background:rgba(232,232,232,1);
+							border-bottom: 5px solid #FF0000;
+							box-shadow: 0 1px 0px 0px rgba(45,45,50,1); 
+							position:relative;
+							}
+		.menuShift  	{     position:absolute;
+						      top:5px;
+								left:355px;}
+		   
+		 body header nav ul li a span 		{  display:inline-block; 
+									position:relative;}
+									
+									
+									
+		 marquee	        	  {    direction:left; 
+		                           height:100; 
+									width:100%; 
+								   font-size:50px;
+								    color:blue;
+									margin-top:100px;
+							    	font-family: arial,微軟正黑體}
+		.photo						{width:220px;
+									height:280px;
+									margin-left:120px;
+									top:25px;}
+		.text1					   { 											
+									color:white;
+									margin-left:130px;
+									font-size:50px;
+									text-align:center;
+									}
+		.text					   { 											
+									color:white;
+									margin-left:180px;
+									font-size:50px;
+									text-align:center;
+									}
+		input						{margin-left:250px;
+									ackground: rgb(208,228,247); 
+background: -moz-linear-gradient(top, rgba(208,228,247,1) 0%, rgba(115,177,231,1) 24%, rgba(10,119,213,1) 50%, rgba(83,159,225,1) 79%, rgba(135,188,234,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(208,228,247,1) 0%,rgba(115,177,231,1) 24%,rgba(10,119,213,1) 50%,rgba(83,159,225,1) 79%,rgba(135,188,234,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(208,228,247,1) 0%,rgba(115,177,231,1) 24%,rgba(10,119,213,1) 50%,rgba(83,159,225,1) 79%,rgba(135,188,234,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0e4f7', endColorstr='#87bcea',GradientType=0 ); 
+		                             }	
+		
+									 
+</style>
+<script>
+	function start()
+		{
+				var initialbutton=document.getElementById("initialbutton");
+				initialbutton.addEventListener("click",initialbuttonPressed,false);
+				var futurebutton=document.getElementById("futurebutton");
+				futurebutton.addEventListener("click",futurebuttonPressed,false);
+	    }
+	function initialbuttonPressed()
+	  {
+	  result.innerHTML ="<table width=\"100%\"><head>"+
+						"<th><tr><td><a href=\"https://www.facebook.com/profile.php?id=100000368034171&fref=ts\">"+
+						"<img src=\"黃玄文.jpg\" class=\"photo\"></a></td>"+					
+						"<td><a href=\"https://www.facebook.com/profile.php?id=100000114817141&fref=ts\">"+
+						"<img src=\"沈聖景.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/zuhuei?fref=ts\">"+
+						"<img src=\"蘇暉博.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/kentifry?fref=ts\">"+
+						"<img src=\"黃振傑.jpg\" class=\"photo\"></a></td></tr>"+
+						"<tr><td><strong class=\"text\">欄中</td>"+
+						"<td><strong class=\"text\">欄中</td>"+
+						"<td><strong class=\"text1\">自由球員</td>"+
+						"<td><strong class=\"text\">舉對</td></tr>"+
+						"<tr><td><a href=\"https://www.facebook.com/profile.php?id=100002277394712&fref=ts\">"+
+						"<img src=\"林仁德.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/orlando.habet.3?fref=ts\">"+
+						"<img src=\"奧蘭多.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/profile.php?id=100000340364796&fref=ts\">"+
+						"<img src=\"黃振傑.jpg\" class=\"photo\"></a></td></tr></th>"+
+					    "<tr><td><strong class=\"text\">舉球</td>"+
+						"<td><strong class=\"text\">大砲</td>"+
+						"<td><strong class=\"text\">大砲</td></tr>"+
+						"</tbody></table>";
+			}
+				function futurebuttonPressed()
+	  {
+	  result.innerHTML ="<table width=\"100%\"><head>"+
+						"<th><tr><td><a href=\"https://www.facebook.com/profile.php?id=100002467395796&fref=ts\">"+
+						"<img src=\"謝侑錦.jpg\" class=\"photo\"></a></td>"+					
+						"<td><a href=\"https://www.facebook.com/si.ye.10?fref=ts\">"+
+						"<img src=\"高培倫.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/profile.php?id=100004735590314&fref=ts\">"+
+						"<img src=\"李家賢.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/profile.php?id=100000312997576\">"+
+						"<img src=\"陳柏彣.jpg\" class=\"photo\"></a></td></tr>"+
+						"<tr><td><a href=\"https://www.facebook.com/profile.php?id=100001020879372&fref=ts\">"+
+						"<img src=\"柯翊偉.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/profile.php?id=100003226161675&fref=ts\">"+		  
+						"<img src=\"張鈞皓.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/nick.chen.14811?fref=ts\">"+		  
+						"<img src=\"陳育軒.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/profile.php?id=100002523097556&fref=ts\">"+
+						"<img src=\"朱冠穎.jpg\" class=\"photo\"></a></td></tr>"+
+						"<tr><td><a href=\"https://www.facebook.com/stanly.chen?fref=ts\">"+
+						"<img src=\"陳育祥.jpg\" class=\"photo\"></a></td>"+
+						"<td><a href=\"https://www.facebook.com/profile.php?id=100000314426071&fref=ts\">"+
+						"<img src=\"陳柏喻.jpg\" class=\"photo\"></a></td></tr></th>"+
+					   
+						"</tbody></table>";
+			}
+
+     window.addEventListener("load",start,false);
+</script>  
+ </head>
+	<body>
+	<header>
+	<nav>
+		<ul class="menuShift">
+			<li><a href="boyteam.html"><span>BOY TEAM</span><span>資工男排</span></a></li>
+			<li><a href="girlteam.html"><span>GIRL TEAM</span><span>資工女排</span></a></li>
+			<li><a href="recive.html"><span>GAME</span><span>打糞遊戲</span></a></li>
+		</ul>
+	</nav>
+	<marquee>資工男排</marquee>
+    <input id="initialbutton" type="button" value="先發球員" style="width:300">
+   <input id="futurebutton" type="button" value="潛力股" style="width:300 "><br><br><br><br>
+   <div id="result"></div>
+	</body>
+</html>
+	 

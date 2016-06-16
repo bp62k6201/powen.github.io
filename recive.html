@@ -1,0 +1,223 @@
+<html>
+	<meta charset = "utf-8">
+	<title>Volleyball</title>
+	<style type = "text/css">
+		body {
+			background-color:black;
+		}
+		p{
+			font-size:36px;
+			text-align: center;
+			line-height: 0px;
+		}
+		span{
+			color: red;
+			font-size: 80px;
+			text-align: center;
+			line-height: 600px;
+			
+		}
+		span1{
+			color: black;
+			font-size: 18px;
+			font-family:bold;
+		}
+	</style>
+	<script>
+		var speed = 10;
+		var speedp= 0;
+		var game;
+		var live = 5;
+		var t = 1;
+		function start(){
+			game=setInterval(balldown, speed);
+			document.getElementById("speedup").style.display="none";
+			document.getElementById("speeddown").style.display="none";
+			document.getElementById("startb").style.display="none";
+		}
+		
+		function start1(){
+			document.getElementById("stop").style.display="none";
+			start();
+		}
+		
+		function stop(){
+			document.getElementById("stop").style.display="";
+			clearInterval(game);
+			document.getElementById("speedup").style.display="";
+			document.getElementById("speeddown").style.display="";
+			document.getElementById("startb").style.display="";
+		}
+		
+		function random(){
+			var maxNum = 1500;  
+			var minNum = 80;  
+			var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
+			document.getElementById("ball").style.left = n+"px";
+		}
+		function balldown(){
+			var x=parseInt(document.getElementById("ball").style.left);
+			var y=parseInt(document.getElementById("ball").style.top);
+			
+			y = y + 3;
+			
+			document.getElementById("ball").style.top = y+"px";
+			
+			var hand_x=parseInt(document.getElementById("hand").style.left);
+			var hand_y=parseInt(document.getElementById("hand").style.top);
+			
+			var maxNum = 550;  
+			var minNum = 50;  
+			var n = Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum; 
+			
+			if ((hand_x >= x -40 &&  hand_x <= x+20 ) && parseInt(document.getElementById("ball").style.top) >= 500){
+				y = 0;
+				document.getElementById("ball").style.top = y+"px";
+				random();
+				var score = parseInt(document.getElementById("s").innerHTML);
+				
+				score +=1 ; 
+				
+				document.getElementById("s").innerHTML = score;
+			}
+			
+			if(y > 600){
+				y = 0;
+			    document.getElementById("ball").style.top = y+"px";
+				random();
+				
+				document.getElementById("l"+live).style.display="none";
+				live--;
+				
+				if (live <= 0){
+					var score = parseInt(document.getElementById("s").innerHTML);
+					window.alert("Your score is "+score);
+					document.getElementById("s").innerHTML = "0";
+					live = 5;
+					for (var i = 1; i<=5; i++){
+						document.getElementById("l"+i).style.display="";
+					}
+					clearInterval(game);
+				}
+			}
+		}
+		
+		
+		function move(){
+			var pv = 20;
+		
+			var x = parseInt(document.getElementById("hand").style.left);//取得手的位置
+			
+			
+			switch(event.keyCode){
+				case 37:	//?????
+					x -= pv;
+					document.getElementById("hand").style.left= x +"px";
+					document.getElementById("hand").style.backgroundImage = "url('powenleft.png')";
+					break;
+				case 39:	//?????
+					x += pv;
+					document.getElementById("hand").style.left= x +"px";
+					if (t>=1){
+						document.getElementById("hand").style.backgroundImage = "url('powen2.png')";
+						t=0;
+					}
+					else{
+						document.getElementById("hand").style.backgroundImage = "url('powenrr.png')";
+						t=1;
+					}
+					break;
+			}
+		}
+		
+		
+		function speedup(){
+			if (speed > 10){
+				speed -= 10;
+			
+				document.getElementById("speed"+speedp).style.backgroundColor = "yellow";
+				speedp --;
+			
+			}
+		}
+		
+		function speeddown(){
+			if (speed < 40){
+				speed += 10;
+				speedp ++;
+				document.getElementById("speed"+speedp).style.backgroundColor = "black";
+				
+			}
+		}
+		
+				
+	</script>
+	<body onkeydown="move()">
+		<div id = "bg" style=" position: absolute; width: 1500px; height: 700px; background-size: 100%;
+		top:10px;left:80px;
+			background-image: url('bg.jpg');background-repeat: no-repeat; border-style:solid; border-color: yellow;"></div>
+		<div id = "hand" style=" position: absolute; width: 100px; height: 150px; top:550px; left:200px; background-size: 100%;
+			background-image: url('powen2.png'); background-repeat: no-repeat;"></div>
+		<div id = "ball" style=" position: absolute; top: 0px; left: 200px; width: 100px; height: 100px; background-size: 100%;
+			background-image: url('ball.png'); background-repeat: no-repeat;"></div>
+		<div id = "stop" style=" position: absolute; width: 1500px; height: 700px;display: none;top:10px;left:80px;
+		background-size: 100%;
+			background-color: hsla(240, 0%, 50%, 0.6); background-repeat: no-repeat;"><p><span>STOP</span></p></div>
+		<div id = "score" style=" position: absolute; width: 120px; height: 70px; background-size: 100%;
+		top:780px; left: 80px;	background-color: white; background-repeat: no-repeat;">
+		<p id = "s">0</p></div>
+		
+		
+		<div id = "live" style ="position: absolute; top:780px; left: 250px; background: rgb(246,230,180); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(246,230,180,1) 0%, rgba(237,144,23,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(246,230,180,1) 0%,rgba(237,144,23,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(246,230,180,1) 0%,rgba(237,144,23,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6e6b4', endColorstr='#ed9017',GradientType=0 );width: 160px; height: 40px;">
+		</div>
+		<div id = "l1" style=" position: absolute; top:780px; left: 250px;width: 40px; height: 40px; background-size: 100%;
+			background-image: url('ball.png'); background-repeat: no-repeat;"></div>
+		</div>
+		
+		<div id = "l2" style=" position: absolute; top:780px; left: 280px;width: 40px; height: 40px; background-size: 100%;
+			background-image: url('ball.png'); background-repeat: no-repeat;"></div>
+		</div>
+		<div id = "l3" style=" position: absolute; top:780px; left: 310px;width: 40px; height: 40px; background-size: 100%;
+			background-image: url('ball.png'); background-repeat: no-repeat;"></div>
+		</div>
+		<div id = "l4" style=" position: absolute; top:780px; left: 340px;width: 40px; height: 40px; background-size: 100%;
+			background-image: url('ball.png'); background-repeat: no-repeat;"></div>
+		</div>
+		<div id = "l5" style=" position: absolute; top:780px; left: 370px;width: 40px; height: 40px; background-size: 100%;
+			background-image: url('ball.png'); background-repeat: no-repeat;"></div>
+		</div>
+		
+		
+		<div id ="nscore" style ="position: absolute; top:750px; left: 105px; width: 80px; height: 40px; color: white;">SCORE</div>
+		<div id ="lscore" style ="position: absolute; top:750px; left: 310px; width: 80px; height: 40px; color: white;">LIFE</div>
+		
+		
+		<button  type = "button"id ="speedup"style ="position: absolute; top: 50px;left: 0px;width: 70; heigh: 20px;" onclick = "speedup()">SPEED UP</button>
+		<button  type = "button"id ="speeddown"style ="position: absolute; top: 100px;left: 0px;width: 70; heigh: 20px;" onclick = "speeddown()">SPEED DOWN</button>
+		
+		<div id ="speed1" style="position: absolute; top:150px; left: 5px;background-color: yellow;width: 40px; height: 10px;"></div>
+		
+		<div id ="speed2" style="position: absolute; top:170px; left: 5px; background-color: yellow;width: 40px; height: 10px;"></div>
+		
+		<div id ="speed3" style="position: absolute; top:190px; left: 5px;background-color: yellow;width: 40px; height: 10px;"></div>
+		
+		<div id ="speed4" style="position: absolute; top:210px; left: 5px;background-color: yellow;width: 40px; height: 10px;"></div>
+		
+		
+		
+		<button  type = "button"id ="stopB" style ="position: absolute; top: 750px;left: 1300px;width: 80; heigh: 20px;background: rgb(184,225,252); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(184,225,252,1) 0%, rgba(169,210,243,1) 10%, rgba(144,186,228,1) 25%, rgba(144,188,234,1) 37%, rgba(144,191,240,1) 50%, rgba(107,168,229,1) 51%, rgba(162,218,245,1) 83%, rgba(189,243,253,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(184,225,252,1) 0%,rgba(169,210,243,1) 10%,rgba(144,186,228,1) 25%,rgba(144,188,234,1) 37%,rgba(144,191,240,1) 50%,rgba(107,168,229,1) 51%,rgba(162,218,245,1) 83%,rgba(189,243,253,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(184,225,252,1) 0%,rgba(169,210,243,1) 10%,rgba(144,186,228,1) 25%,rgba(144,188,234,1) 37%,rgba(144,191,240,1) 50%,rgba(107,168,229,1) 51%,rgba(162,218,245,1) 83%,rgba(189,243,253,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8e1fc', endColorstr='#bdf3fd',GradientType=0 );"onclick = "stop()"><span1>STOP<span1></button>
+		<button  onclick = "start1()"type = "button"id ="startb" style ="position: absolute; top: 750px;left: 1400px;width: 80; heigh: 20px;background: rgb(184,225,252); /* Old browsers */
+		background: -moz-linear-gradient(top, rgba(184,225,252,1) 0%, rgba(169,210,243,1) 10%, rgba(144,186,228,1) 25%, rgba(144,188,234,1) 37%, rgba(144,191,240,1) 50%, rgba(107,168,229,1) 51%, rgba(162,218,245,1) 83%, rgba(189,243,253,1) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(184,225,252,1) 0%,rgba(169,210,243,1) 10%,rgba(144,186,228,1) 25%,rgba(144,188,234,1) 37%,rgba(144,191,240,1) 50%,rgba(107,168,229,1) 51%,rgba(162,218,245,1) 83%,rgba(189,243,253,1) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(184,225,252,1) 0%,rgba(169,210,243,1) 10%,rgba(144,186,228,1) 25%,rgba(144,188,234,1) 37%,rgba(144,191,240,1) 50%,rgba(107,168,229,1) 51%,rgba(162,218,245,1) 83%,rgba(189,243,253,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8e1fc', endColorstr='#bdf3fd',GradientType=0 );"><span1>START<span1></button>
+	</body>
+</html>
